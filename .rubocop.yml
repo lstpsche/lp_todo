@@ -6,11 +6,11 @@ AllCops:
     - 'log/**/*'
     - 'tmp/**/*'
 
+Style/Documentation:
+  Enabled: false
+
 Metrics/LineLength:
   Max: 120
 
 Metrics/MethodLength:
   Max: 20
-
-Style/Documentation:
-  Enabled: false
