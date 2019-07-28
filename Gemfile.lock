@@ -231,6 +231,7 @@ DEPENDENCIES
   pry
   puma (~> 3.11)
   rails (~> 5.2.2)
+  rubocop (~> 0.73.0)
   sass-rails (~> 5.0)
   selenium-webdriver
   solargraph
