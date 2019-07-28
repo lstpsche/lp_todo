@@ -1,0 +1,16 @@
+AllCops:
+  Exclude:
+    - 'bin/*'
+    - 'node_modules/*'
+    - 'vendor/**/*'
+    - 'log/**/*'
+    - 'tmp/**/*'
+
+Metrics/LineLength:
+  Max: 120
+
+Metrics/MethodLength:
+  Max: 20
+
+Style/Documentation:
+  Enabled: false
