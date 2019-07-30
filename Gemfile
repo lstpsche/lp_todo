@@ -18,7 +18,7 @@ gem 'sassc'
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster
 gem 'turbolinks', '~> 5'
-# Build JSON APIs with easee
+# Build JSON APIs with ease
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -47,6 +47,7 @@ end
 group :test do
   # Adds support for Capybara system testing and web drivers
   gem 'capybara', '>= 2.15'
+  # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
