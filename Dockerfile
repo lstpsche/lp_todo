@@ -2,7 +2,7 @@ FROM ruby:2.6.3
 
 ENV BUNDLER_VERSION 2.0.2
 
-RUN apt-get update && apt-get install -y build-essential libpq-dev nodejs
+RUN apt-get update && apt-get install -y build-essential libpq-dev nodejs postgresql-11
 RUN mkdir -p /app
 WORKDIR /app
 COPY Gemfile Gemfile.lock ./

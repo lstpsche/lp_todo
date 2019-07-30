@@ -8,7 +8,7 @@ default: &default
 credits: &credits
   username: <%= ENV['LP_TODO_DATABASE_USERNAME'] %>
   password: <%= ENV['LP_TODO_DATABASE_PASSWORD'] %>
-  host: <%= ENV['DATABASE_HOST'] || localhost %>
+  host: <%= ENV['DATABASE_HOST'] || psql %>
   port: <%= ENV['DATABASE_PORT'] || 5432 %>
 
 development:
