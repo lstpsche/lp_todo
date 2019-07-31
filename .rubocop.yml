@@ -5,6 +5,10 @@ AllCops:
     - 'vendor/**/*'
     - 'log/**/*'
     - 'tmp/**/*'
+    - 'db/schema.rb'
+
+Metrics/BlockLength:
+  Max: 30
 
 Style/Documentation:
   Enabled: false
