@@ -7,6 +7,6 @@ before_install:
   - docker build -t lp_todo .
   - docker run -d -p 127.0.0.1:80:4567 lp_todo /bin/sh -c "cd /app; bundle exec foreman start;"
   - docker ps -a
-  - docker run lp_todo /bin/sh -c "cd /app; bundle exec rake test; bundle exec rake db:create db:migrate;"
+  - docker run lp_todo /bin/sh -c "cd /app; bundle exec rake db:create db:migrate;"
 script:
   - bundle exec rspec
