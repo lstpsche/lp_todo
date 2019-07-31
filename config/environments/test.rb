@@ -9,6 +9,13 @@ Rails.application.configure do
   # and recreated between test runs. Don't rely on the data there!
   config.cache_classes = true
 
+  # Redis caching
+  config.cache_store = :redis_cache_store, {
+    url: ENV['REDIS_CACHE_URL'],
+    db: 0,
+    expires_in: 1.hour
+  }
+
   # Do not eager load code on boot. This avoids loading your whole application
   # just for the purpose of running a single test. If you are using a tool that
   # preloads Rails for running tests, you may have to set it to true.
