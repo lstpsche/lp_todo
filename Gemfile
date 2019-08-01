@@ -37,8 +37,6 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # For debugs: binding.pry
   gem 'pry'
-  # To keep code style standartized
-  gem 'rubocop', '~> 0.73.0', require: false
   # Spring speeds up development by keeping your application running in the background
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -49,6 +47,10 @@ end
 group :test do
   # Adds support for Capybara system testing and web drivers
   gem 'capybara', '>= 2.15'
+  # Rspec testing
+  gem 'rspec'
+  # To keep code style standartized
+  gem 'rubocop', '~> 0.73.0', require: false
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'selenium-webdriver'
   gem 'webdrivers'
