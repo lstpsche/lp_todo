@@ -1,25 +1,10 @@
-# language: ruby
-# rvm:
-#   - 2.6.3
-# services:
-#   - docker
-# before_install:
-#   # - docker-compose build
-#   - docker build -t lp_todo .
-#   # - docker-compose run todo_web bash -c "bundle exec foreman start;"
-#   - docker run -d -p 127.0.0.1:80:4567 lp_todo bash -c "cd /app; bundle exec foreman start;"
-#   - docker ps -a
-#   - docker run lp_todo bash -c "cd /app; rspec"
-#   # - docker-compose run todo_web bash -c "bundle exec rake db:create db:migrate;"
-# script:
-#   # - docker-compose run todo_web bash -c "bundle exec rspec;"
-
 sudo: false
 cache: bundler
 language: ruby
 rvm:
   - 2.6.3
-before_install: gem update --remote bundler
+before_install:
+  - gem update --remote bundler
 install:
   - bundle install --retry=3
 script:
