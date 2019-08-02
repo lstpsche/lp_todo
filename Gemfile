@@ -17,6 +17,8 @@ gem 'rails', '~> 5.2.3'
 gem 'redis'
 # Use SCSS for stylesheets
 gem 'sassc'
+# Slim interpreter
+gem 'slim'
 # Build JSON APIs with ease
 gem 'jbuilder', '~> 2.5'
 
