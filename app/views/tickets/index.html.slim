@@ -5,7 +5,7 @@
 
 #all-tickets
   table
-    - tickets.each do |ticket|
+    - @tickets.each do |ticket|
       tr
         td = ticket.title
         td = link_to 'Show', ticket_path(ticket)

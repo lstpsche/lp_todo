@@ -1,16 +1,22 @@
-class TicketsController < ApplicationController
-  helper_method :ticket, :tickets, :new_ticket
+# frozen_string_literal: true
 
-  def index; end
+class TicketsController < ApplicationController
+  helper_method :ticket
+
+  def index
+    @tickets = Ticket.all.oldest_first
+  end
 
   def show; end
 
-  def new; end
+  def new
+    @ticket = Ticket.new
+  end
 
   def edit; end
 
   def create
-    new_ticket(permitted_params)
+    @ticket = Ticket.new(permitted_params)
 
     if ticket.save
       redirect_to tickets_path
@@ -39,15 +45,7 @@ class TicketsController < ApplicationController
     params.require(:ticket).permit(:title)
   end
 
-  def tickets
-    @tickets ||= Ticket.all
-  end
-
   def ticket
     @ticket ||= Ticket.find(params[:id])
-  end
-
-  def new_ticket(ticket_params = {})
-    @ticket ||= Ticket.new(ticket_params)
   end
 end
