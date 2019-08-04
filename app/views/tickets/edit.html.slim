@@ -1,0 +1,8 @@
+= content_for :title do 
+  | Edit '#{ticket.title}'
+
+h1 Edit '#{ticket.title}'
+
+= render partial: 'common/tickets/edit_form'
+
+= link_to 'All ticket', tickets_path

@@ -1,12 +1,15 @@
 FROM ruby:2.6.3
 
-ENV BUNDLER_VERSION 2.0.2
+RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs vim
 
-RUN apt-get update && apt-get install -y build-essential nodejs libpq-dev postgresql-11 vim \
-    && mkdir -p /app
+RUN mkdir /app
+COPY Gemfile /app/Gemfile
+COPY Gemfile.lock /app/Gemfile.lock
+
+RUN gem install bundler -v 2.0.2 --no-document
 WORKDIR /app
-COPY Gemfile Gemfile.lock ./
-RUN gem install bundler -v $BUNDLER_VERSION --no-document -f \
-    && bundle install --jobs 5 --retry 5
+RUN bundle install --jobs 3 --retry 5
 
-COPY . ./
+COPY . /app
+
+EXPOSE 3000

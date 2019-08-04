@@ -1,0 +1,8 @@
+= content_for :title do 
+  = ticket.title
+
+h1 = ticket.title
+
+p Title: #{ticket.title}
+
+= link_to 'All tickets', tickets_path
