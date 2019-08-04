@@ -1,0 +1,13 @@
+= content_for :title do
+ | All Tickets
+
+= link_to 'Create ticket', new_ticket_path
+
+#all-tickets
+  table
+    - tickets.each do |ticket|
+      tr
+        td = ticket.title
+        td = link_to 'Show', ticket_path(ticket)
+        td = link_to 'Edit', edit_ticket_path(ticket)
+        td = link_to 'Destroy', ticket_path(ticket), method: :delete, data: { confirm: 'Are you sure?' }

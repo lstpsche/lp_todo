@@ -1,0 +1,6 @@
+= simple_form_for new_ticket do |form|
+
+  = render partial: 'common/tickets/form_errors'
+
+  = form.input :title
+  = form.button :submit

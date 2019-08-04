@@ -1,0 +1,8 @@
+= content_for :title do
+  | New article
+
+h1 New article
+
+= render partial: 'common/tickets/create_form'
+
+= link_to 'All tickets', tickets_path
