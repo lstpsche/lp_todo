@@ -6,8 +6,9 @@ default: &default
   pool: <%= ENV['RAILS_MAX_THREADS'] || 5  %>
 
 credits: &credits
-  username: <%= ENV['LP_TODO_DATABASE_USERNAME'] %>
-  password: <%= ENV['LP_TODO_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password:
+  password: <%= ENV['DATABASE_PASSWORD'] %>
   host: <%= ENV['DATABASE_HOST'] || psql %>
   port: <%= ENV['DATABASE_PORT'] || 5432 %>
 
@@ -43,5 +44,5 @@ test:
 production:
   <<: *default
   database: lp_todo_production
-  username: <%= ENV['LP_TODO_DATABASE_USERNAME'] %>
-  password: <%= ENV['LP_TODO_DATABASE_PASSWORD'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
