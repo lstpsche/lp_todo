@@ -8,5 +8,5 @@ before_install:
 install:
   - docker-compose build
 script:
-  - docker-compose run todo_web rspec
   - docker-compose run todo_web rubocop
+  - docker-compose run todo_web rspec
