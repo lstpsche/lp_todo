@@ -1,8 +1,7 @@
-# sudo: false
-cache: bundler
-language: ruby
-rvm:
-  - 2.6.3
+# cache: bundler
+# language: ruby
+# rvm:
+#   - 2.6.3
 env:
   - DOCKER_COMPOSE_VERSION=1.21.0
 before_install:
@@ -10,10 +9,8 @@ before_install:
   - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
-  - gem update --remote bundler
 install:
-  - bundle install --jobs=3 --retry=3
-  - docker-compose run todo_web bash
+  - docker-compose build
 script:
-  - rspec
-  - rubocop
+  - docker-compose run todo_web rspec
+  - docker-compose run todo_web rubocop
