@@ -46,7 +46,7 @@ GEM
       public_suffix (>= 2.0.2, < 4.0)
     arel (9.0.0)
     ast (2.4.0)
-    backport (1.1.1)
+    backport (1.1.2)
     backports (3.15.0)
     bindex (0.8.1)
     builder (3.2.3)
@@ -216,7 +216,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (>= 3.0, < 5.0)
-    solargraph (0.35.0)
+    solargraph (0.35.2)
       backport (~> 1.1)
       bundler (>= 1.17.2)
       htmlentities (~> 4.3, >= 4.3.4)
@@ -296,7 +296,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   slim-rails
-  solargraph
+  solargraph (~> 0.35.2)
   spring
   spring-watcher-listen (~> 2.0.0)
   travis
