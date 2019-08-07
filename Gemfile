@@ -44,7 +44,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # IntelliSense, auto-complection and a lot of more useful stuff for code writing
-  gem 'solargraph'
+  gem 'solargraph', '~> 0.35.2'
 end
 
 group :test do
