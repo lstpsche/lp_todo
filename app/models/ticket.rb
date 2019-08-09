@@ -8,6 +8,7 @@ class Ticket < ApplicationRecord
 
   has_many :notes, dependent: :destroy
   has_many :contents, dependent: :destroy
+  has_one :due_time, dependent: :destroy
 
   scope :oldest_first, -> { order(created_at: :asc) }
   scope :newest_first, -> { order(created_at: :desc) }
