@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateDueTimes < ActiveRecord::Migration[5.2]
   def change
     create_table :due_times do |t|

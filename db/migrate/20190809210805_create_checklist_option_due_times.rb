@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateChecklistOptionDueTimes < ActiveRecord::Migration[5.2]
   def change
     create_table :checklist_option_due_times do |t|
