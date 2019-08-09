@@ -10,10 +10,77 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_03_182404) do
+ActiveRecord::Schema.define(version: 2019_08_09_210805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklist_option_due_times", force: :cascade do |t|
+    t.datetime "date", default: "2019-08-09 21:11:58", null: false
+    t.bigint "checklist_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_option_id"], name: "index_checklist_option_due_times_on_checklist_option_id"
+  end
+
+  create_table "checklist_options", force: :cascade do |t|
+    t.text "text", null: false
+    t.boolean "checked", default: false, null: false
+    t.bigint "checklist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_id"], name: "index_checklist_options_on_checklist_id"
+  end
+
+  create_table "checklists", force: :cascade do |t|
+    t.string "title", null: false
+    t.bigint "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_checklists_on_ticket_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "ticket_content_type"
+    t.bigint "ticket_content_id"
+    t.bigint "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_content_type", "ticket_content_id"], name: "index_contents_on_ticket_content_type_and_ticket_content_id"
+    t.index ["ticket_id"], name: "index_contents_on_ticket_id"
+  end
+
+  create_table "due_times", force: :cascade do |t|
+    t.datetime "date", default: "2019-08-09 20:57:41", null: false
+    t.bigint "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_due_times_on_ticket_id"
+  end
+
+  create_table "labels", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "color", default: "#000000", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notes", force: :cascade do |t|
+    t.text "text", null: false
+    t.bigint "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_notes_on_ticket_id"
+  end
+
+  create_table "ticket_labels", force: :cascade do |t|
+    t.bigint "ticket_id"
+    t.bigint "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_ticket_labels_on_label_id"
+    t.index ["ticket_id"], name: "index_ticket_labels_on_ticket_id"
+  end
 
   create_table "tickets", force: :cascade do |t|
     t.string "title", default: "", null: false
@@ -21,4 +88,12 @@ ActiveRecord::Schema.define(version: 2019_08_03_182404) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "checklist_option_due_times", "checklist_options"
+  add_foreign_key "checklist_options", "checklists"
+  add_foreign_key "checklists", "tickets"
+  add_foreign_key "contents", "tickets"
+  add_foreign_key "due_times", "tickets"
+  add_foreign_key "notes", "tickets"
+  add_foreign_key "ticket_labels", "labels"
+  add_foreign_key "ticket_labels", "tickets"
 end
