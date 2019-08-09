@@ -7,6 +7,7 @@ class Ticket < ApplicationRecord
   has_many :labels, through: :ticket_labels
 
   has_many :notes, dependent: :destroy
+  has_many :checklists, dependent: :destroy
   has_many :contents, dependent: :destroy
   has_one :due_time, dependent: :destroy
 

@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_195455) do
+ActiveRecord::Schema.define(version: 2019_08_09_203126) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklists", force: :cascade do |t|
+    t.string "title"
+    t.bigint "ticket_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ticket_id"], name: "index_checklists_on_ticket_id"
+  end
 
   create_table "contents", force: :cascade do |t|
     t.string "ticket_content_type"
@@ -63,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_195455) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "checklists", "tickets"
   add_foreign_key "contents", "tickets"
   add_foreign_key "due_times", "tickets"
   add_foreign_key "notes", "tickets"
