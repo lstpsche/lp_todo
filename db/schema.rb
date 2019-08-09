@@ -10,10 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_09_204056) do
+ActiveRecord::Schema.define(version: 2019_08_09_210805) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "checklist_option_due_times", force: :cascade do |t|
+    t.datetime "date", default: "2019-08-09 21:11:58", null: false
+    t.bigint "checklist_option_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["checklist_option_id"], name: "index_checklist_option_due_times_on_checklist_option_id"
+  end
 
   create_table "checklist_options", force: :cascade do |t|
     t.text "text", null: false
@@ -80,6 +88,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_204056) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "checklist_option_due_times", "checklist_options"
   add_foreign_key "checklist_options", "checklists"
   add_foreign_key "checklists", "tickets"
   add_foreign_key "contents", "tickets"
