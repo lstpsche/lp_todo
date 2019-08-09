@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_08_063133) do
+ActiveRecord::Schema.define(version: 2019_08_09_194359) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,28 @@ ActiveRecord::Schema.define(version: 2019_08_08_063133) do
     t.index ["ticket_id"], name: "index_contents_on_ticket_id"
   end
 
+  create_table "labels", force: :cascade do |t|
+    t.string "name"
+    t.string "color"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notes", force: :cascade do |t|
     t.text "text"
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["ticket_id"], name: "index_notes_on_ticket_id"
+  end
+
+  create_table "ticket_labels", force: :cascade do |t|
+    t.bigint "ticket_id"
+    t.bigint "label_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["label_id"], name: "index_ticket_labels_on_label_id"
+    t.index ["ticket_id"], name: "index_ticket_labels_on_ticket_id"
   end
 
   create_table "tickets", force: :cascade do |t|
@@ -41,4 +57,6 @@ ActiveRecord::Schema.define(version: 2019_08_08_063133) do
 
   add_foreign_key "contents", "tickets"
   add_foreign_key "notes", "tickets"
+  add_foreign_key "ticket_labels", "labels"
+  add_foreign_key "ticket_labels", "tickets"
 end

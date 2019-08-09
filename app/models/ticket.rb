@@ -3,6 +3,9 @@
 class Ticket < ApplicationRecord
   validates :title, presence: true
 
+  has_many :ticket_labels
+  has_many :labels, through: :ticket_labels
+
   has_many :notes, dependent: :destroy
   has_many :contents, dependent: :destroy
 
