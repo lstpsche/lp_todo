@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2019_08_09_204056) do
   enable_extension "plpgsql"
 
   create_table "checklist_options", force: :cascade do |t|
-    t.text "text"
-    t.boolean "checked"
+    t.text "text", null: false
+    t.boolean "checked", default: false, null: false
     t.bigint "checklist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_204056) do
   end
 
   create_table "checklists", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2019_08_09_204056) do
   end
 
   create_table "due_times", force: :cascade do |t|
-    t.datetime "date"
+    t.datetime "date", default: "2019-08-09 20:57:41", null: false
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,14 +51,14 @@ ActiveRecord::Schema.define(version: 2019_08_09_204056) do
   end
 
   create_table "labels", force: :cascade do |t|
-    t.string "name"
-    t.string "color"
+    t.string "name", null: false
+    t.string "color", default: "#000000", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "notes", force: :cascade do |t|
-    t.text "text"
+    t.text "text", null: false
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
