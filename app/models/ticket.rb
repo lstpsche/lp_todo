@@ -3,6 +3,8 @@
 class Ticket < ApplicationRecord
   validates_with Validators::Base, fields: %i[position_in_folder]
 
+  has_one :item, as: :workspace_item, dependent: :destroy
+
   has_many :ticket_labels
   has_many :labels, through: :ticket_labels
 
@@ -11,7 +13,7 @@ class Ticket < ApplicationRecord
   has_many :contents, dependent: :destroy
   has_one :due_time, dependent: :destroy
 
-  has_one :ticket_folder
+  has_one :ticket_folder, dependent: :destroy
   has_one :folder, through: :ticket_folder
 
   scope :oldest_first, -> { order(created_at: :asc) }
