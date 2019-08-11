@@ -3,7 +3,7 @@
 class Ticket < ApplicationRecord
   validates_with Validators::Base, fields: %i[position_in_folder]
 
-  has_one :item, as: :workspace_item, dependent: :destroy
+  belongs_to :workspace
 
   has_many :ticket_labels
   has_many :labels, through: :ticket_labels

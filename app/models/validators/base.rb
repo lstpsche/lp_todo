@@ -12,7 +12,8 @@ module Validators
 
     def validators
       {
-        'ticket' => Validators::TicketsValidator.new(options[:fields])
+        'ticket' => Validators::TicketsValidator.new(options[:fields]),
+        'item' => Validators::ItemsValidator.new(options[:fields])
       }
     end
   end
