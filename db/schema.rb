@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_075538) do
   enable_extension "plpgsql"
 
   create_table "checklist_option_due_times", force: :cascade do |t|
-    t.datetime "date", default: "2019-08-11 08:02:07", null: false
+    t.datetime "date", default: "2019-08-11 13:32:37", null: false
     t.bigint "checklist_option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_075538) do
   end
 
   create_table "due_times", force: :cascade do |t|
-    t.datetime "date", default: "2019-08-11 08:02:07", null: false
+    t.datetime "date", default: "2019-08-11 13:32:37", null: false
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -63,7 +63,6 @@ ActiveRecord::Schema.define(version: 2019_08_11_075538) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "workspace_id"
-    t.integer "position_in_workspace"
     t.index ["workspace_id"], name: "index_folders_on_workspace_id"
   end
 
@@ -118,7 +117,6 @@ ActiveRecord::Schema.define(version: 2019_08_11_075538) do
     t.bigint "folder_id"
     t.integer "position_in_folder"
     t.bigint "workspace_id"
-    t.integer "position_in_workspace"
     t.index ["folder_id"], name: "index_tickets_on_folder_id"
     t.index ["workspace_id"], name: "index_tickets_on_workspace_id"
   end

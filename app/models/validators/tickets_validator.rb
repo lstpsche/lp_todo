@@ -19,11 +19,16 @@ module Validators
     attr_reader :fields, :ticket
 
     def position_in_folder
-      if ticket.ticket_folder
-        positions = ticket.folder.tickets.where.not(id: ticket.id).pluck(:position_in_folder)
+      folder = ticket.folder
+      if folder
+        positions = folder.tickets.where.not(id: ticket.id).pluck(:position_in_folder)
 
         if positions.include?(ticket.position_in_folder)
-          ticket.errors[:base] << "This position is already taken. Please, specify another one."
+          ticket.errors[:base] << 'This position is already taken. Please, specify another one.'
+        end
+
+        if !ticket.position_in_folder
+          ticket.errors[:base] << 'Ticket should have a position in folder. Please, specify one.'
         end
       end
     end

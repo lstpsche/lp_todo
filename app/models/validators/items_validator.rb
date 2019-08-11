@@ -19,10 +19,12 @@ module Validators
     attr_reader :fields, :item
 
     def position
-      positions = item.workspace.items.where.not(id: item.id).pluck(:position)
+      if item.workspace
+        positions = item.workspace.items.where.not(id: item.id).pluck(:position)
 
-      if positions.include?(item.position)
-        item.errors[:base] << "This position is already taken. Please, specify another one."
+        if positions.include?(item.position)
+          item.errors[:base] << "This position is already taken. Please, specify another one."
+        end
       end
     end
   end
