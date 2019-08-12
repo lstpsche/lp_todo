@@ -2,7 +2,7 @@
 
 module Validators
   class ItemsValidator < Base
-    include ValidatorsHelpers::ItemsValidatorHelper
+    include ItemsValidatorHelper
 
     def initialize(fields)
       @fields = fields

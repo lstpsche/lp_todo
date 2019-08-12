@@ -2,7 +2,7 @@
 
 module Validators
   class TicketsValidator < Base
-    include ValidatorsHelpers::TicketsValidatorHelper
+    include TicketsValidatorHelper
 
     def initialize(fields)
       @fields = fields
