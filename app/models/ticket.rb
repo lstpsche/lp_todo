@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class Ticket < ApplicationRecord
-  validates :title, presence: true
+  validates_with Validators::Base, fields: %i[title position_in_folder]
+
+  belongs_to :workspace
 
   has_many :ticket_labels
   has_many :labels, through: :ticket_labels
@@ -10,6 +12,9 @@ class Ticket < ApplicationRecord
   has_many :checklists, dependent: :destroy
   has_many :contents, dependent: :destroy
   has_one :due_time, dependent: :destroy
+
+  has_one :ticket_folder, dependent: :destroy
+  has_one :folder, through: :ticket_folder
 
   scope :oldest_first, -> { order(created_at: :asc) }
   scope :newest_first, -> { order(created_at: :desc) }
