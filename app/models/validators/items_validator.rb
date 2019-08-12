@@ -2,6 +2,8 @@
 
 module Validators
   class ItemsValidator < Base
+    POSITION_ALREADY_TAKEN_MSG = 'This position is already taken. Please, specify another one.'
+
     def initialize(fields)
       @fields = fields
     end
@@ -10,7 +12,7 @@ module Validators
       @item = item
 
       fields.each do |field|
-        self.send(field) if self.respond_to?(field, true)
+        send(field) if respond_to?(field, true)
       end
     end
 
@@ -19,13 +21,14 @@ module Validators
     attr_reader :fields, :item
 
     def position
-      if item.workspace
-        positions = item.workspace.items.where.not(id: item.id).pluck(:position)
+      return unless item.workspace
 
-        if positions.include?(item.position)
-          item.errors[:base] << "This position is already taken. Please, specify another one."
-        end
-      end
+      positions = item.workspace.items.where.not(id: item.id).pluck(:position)
+      check_position_uniqueness(positions)
+    end
+
+    def check_position_uniqueness(positions)
+      item.errors[:base] << POSITION_ALREADY_TAKEN_MSG if positions.include?(item.position)
     end
   end
 end

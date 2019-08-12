@@ -2,6 +2,9 @@
 
 module Validators
   class TicketsValidator < Base
+    POSITION_IN_FOLDER_ALREADY_TAKEN_MSG = 'This position is already taken. Please, specify another one.'
+    POSITION_IN_FOLDER_NOT_PRESENT_MSG = 'Ticket should have a position in folder. Please, specify one.'
+
     def initialize(fields)
       @fields = fields
     end
@@ -10,7 +13,7 @@ module Validators
       @ticket = ticket
 
       fields.each do |field|
-        self.send(field) if self.respond_to?(field, true)
+        send(field) if respond_to?(field, true)
       end
     end
 
@@ -19,18 +22,20 @@ module Validators
     attr_reader :fields, :ticket
 
     def position_in_folder
-      folder = ticket.folder
-      if folder
-        positions = folder.tickets.where.not(id: ticket.id).pluck(:position_in_folder)
+      return unless (folder = ticket.folder)
 
-        if positions.include?(ticket.position_in_folder)
-          ticket.errors[:base] << 'This position is already taken. Please, specify another one.'
-        end
+      positions = folder.tickets.where.not(id: ticket.id).pluck(:position_in_folder)
 
-        if !ticket.position_in_folder
-          ticket.errors[:base] << 'Ticket should have a position in folder. Please, specify one.'
-        end
-      end
+      check_position_in_folder_uniqueness(positions)
+      check_position_in_folder_presence
+    end
+
+    def check_position_in_folder_uniqueness(positions)
+      ticket.errors[:base] << POSITION_IN_FOLDER_ALREADY_TAKEN_MSG if positions.include?(ticket.position_in_folder)
+    end
+
+    def check_position_in_folder_presence
+      ticket.errors[:base] << POSITION_IN_FOLDER_NOT_PRESENT_MSG unless ticket.position_in_folder
     end
   end
 end
