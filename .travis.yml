@@ -7,8 +7,7 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 install:
   - docker-compose build
-  - docker-compose run todo_web
 script:
-  - docker-compose exec todo_web rubocop
-  - docker-compose exec todo_web rspec
-  - docker-compose exec todo_web reek
+  - docker-compose run todo_web rubocop
+  - docker-compose run todo_web rspec
+  - docker-compose run todo_web reek
