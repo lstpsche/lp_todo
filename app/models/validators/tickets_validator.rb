@@ -2,8 +2,7 @@
 
 module Validators
   class TicketsValidator < Base
-    POSITION_IN_FOLDER_ALREADY_TAKEN_MSG = 'This position is already taken. Please, specify another one.'
-    POSITION_IN_FOLDER_NOT_PRESENT_MSG = 'Ticket should have a position in folder. Please, specify one.'
+    include ValidatorsHelpers::TicketsValidatorHelper
 
     def initialize(fields)
       @fields = fields
@@ -21,6 +20,10 @@ module Validators
 
     attr_reader :fields, :ticket
 
+    def title
+      check_title_presence
+    end
+
     def position_in_folder
       return unless (folder = ticket.folder)
 
@@ -28,14 +31,6 @@ module Validators
 
       check_position_in_folder_uniqueness(positions)
       check_position_in_folder_presence
-    end
-
-    def check_position_in_folder_uniqueness(positions)
-      ticket.errors[:base] << POSITION_IN_FOLDER_ALREADY_TAKEN_MSG if positions.include?(ticket.position_in_folder)
-    end
-
-    def check_position_in_folder_presence
-      ticket.errors[:base] << POSITION_IN_FOLDER_NOT_PRESENT_MSG unless ticket.position_in_folder
     end
   end
 end
