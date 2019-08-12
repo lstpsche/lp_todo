@@ -4,12 +4,14 @@ module Validators
   class Base < ActiveModel::Validator
     def validate(record)
       key = record.class.to_s.underscore
-      fields = options[:fields]
+      @fields = options[:fields]
 
       validators[key].validate(record)
     end
 
     private
+
+    attr_reader :fields
 
     def validators
       {

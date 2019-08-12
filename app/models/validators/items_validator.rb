@@ -21,7 +21,7 @@ module Validators
     attr_reader :fields, :item
 
     def position
-      return unless space = item.workspace
+      return unless (space = item.workspace)
 
       positions = space.items.where.not(id: item.id).pluck(:position)
       check_position_uniqueness(positions)
