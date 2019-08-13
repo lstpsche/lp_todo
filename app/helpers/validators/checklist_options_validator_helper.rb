@@ -24,10 +24,8 @@ module Validators
       option.errors[:base] << POSITION_NOT_PRESENT unless option.position
     end
 
-    def validate_option_position_uniqueness
-      return unless (checklist = option.checklist)
-
-      option.errors[:base] << POSITION_NOT_UNIQUE if option.position.in? checklist.options.pluck(:position)
+    def validate_option_position_uniqueness(positions)
+      option.errors[:base] << POSITION_NOT_UNIQUE if option.position.in? positions
     end
   end
 end
