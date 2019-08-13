@@ -29,5 +29,12 @@ module Validators
     def checked
       validate_option_checked_field
     end
+
+    def position
+      return unless (checklist = options.checklist)
+
+      validate_option_position_presence
+      validate_option_position_uniqueness(checklist.options.pluck(:position))
+    end
   end
 end

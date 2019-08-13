@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_11_075538) do
+ActiveRecord::Schema.define(version: 2019_08_13_203730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "checklist_option_due_times", force: :cascade do |t|
-    t.datetime "date", default: "2019-08-11 13:32:37", null: false
+    t.datetime "date", default: "2019-08-13 20:54:19", null: false
     t.bigint "checklist_option_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_075538) do
     t.bigint "checklist_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "position", null: false
     t.index ["checklist_id"], name: "index_checklist_options_on_checklist_id"
   end
 
@@ -51,7 +52,7 @@ ActiveRecord::Schema.define(version: 2019_08_11_075538) do
   end
 
   create_table "due_times", force: :cascade do |t|
-    t.datetime "date", default: "2019-08-11 13:32:37", null: false
+    t.datetime "date", default: "2019-08-13 20:54:19", null: false
     t.bigint "ticket_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

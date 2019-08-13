@@ -8,7 +8,7 @@ COPY Gemfile.lock /app/Gemfile.lock
 
 RUN gem install bundler -v 2.0.2 --no-document
 WORKDIR /app
-RUN bundle install --jobs 3 --retry 5
+RUN bundle install --jobs 5 --retry 5
 
 COPY . /app
 
