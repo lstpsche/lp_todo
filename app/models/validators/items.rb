@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Validators
-  class ItemsValidator < Base
+  class Items < Base
     include ItemsValidatorHelper
 
     def initialize(fields)
@@ -11,9 +11,7 @@ module Validators
     def validate(item)
       @item = item
 
-      fields.each do |field|
-        send(field)
-      end
+      fields.each { |field| send(field) }
     end
 
     private
