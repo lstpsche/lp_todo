@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Validators
-  class TicketsValidator < Base
+  class Tickets < Base
     include TicketsValidatorHelper
 
     def initialize(fields)
@@ -11,9 +11,7 @@ module Validators
     def validate(ticket)
       @ticket = ticket
 
-      fields.each do |field|
-        send(field)
-      end
+      fields.each { |field| send(field) }
     end
 
     private
