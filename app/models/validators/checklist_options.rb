@@ -29,5 +29,10 @@ module Validators
     def checked
       validate_option_checked_field
     end
+
+    def position
+      validate_option_position_presence
+      validate_option_position_uniqueness
+    end
   end
 end
