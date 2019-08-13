@@ -25,7 +25,7 @@ module Validators
     end
 
     def position_in_folder
-      return unless (ticket.folder)
+      return unless ticket.folder
 
       check_position_in_folder_uniqueness(in_folder_positions)
       check_position_in_folder_presence
