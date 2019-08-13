@@ -10,3 +10,4 @@ install:
 script:
   - docker-compose run todo_web rubocop
   - docker-compose run todo_web rspec
+  - docker-compose run todo_web reek

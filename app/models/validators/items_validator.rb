@@ -12,7 +12,7 @@ module Validators
       @item = item
 
       fields.each do |field|
-        send(field) if respond_to?(field, true)
+        send(field)
       end
     end
 
@@ -21,9 +21,9 @@ module Validators
     attr_reader :fields, :item
 
     def position
-      return unless item.workspace
+      return unless (space = item.workspace)
 
-      positions = item.workspace.items.where.not(id: item.id).pluck(:position)
+      positions = space.items.where.not(id: item.id).pluck(:position)
       check_position_uniqueness(positions)
     end
   end

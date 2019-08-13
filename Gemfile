@@ -50,6 +50,8 @@ end
 group :test do
   # Adds support for Capybara system testing and web drivers
   gem 'capybara', '>= 2.15'
+  # Reek to keep code nice smelling
+  gem 'reek'
   # Rspec testing
   gem 'rspec'
   # To keep code style standartized

@@ -12,7 +12,7 @@ module Validators
       @ticket = ticket
 
       fields.each do |field|
-        send(field) if respond_to?(field, true)
+        send(field)
       end
     end
 
