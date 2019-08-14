@@ -8,7 +8,7 @@ module Validators
       folder.title ||= ''
     end
 
-    def check_workspace_presence
+    def validate_workspace_presence
       folder.error[:base] << WORKSPACE_NOT_PRESENT unless folder.workspace
     end
   end

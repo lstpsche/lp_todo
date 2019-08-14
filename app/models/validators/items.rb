@@ -22,7 +22,7 @@ module Validators
       return unless (space = item.workspace)
 
       positions = space.items.where.not(id: item.id).pluck(:position)
-      check_position_uniqueness(positions)
+      validate_position_uniqueness(positions)
     end
   end
 end

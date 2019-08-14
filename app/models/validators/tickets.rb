@@ -19,18 +19,14 @@ module Validators
     attr_reader :fields, :ticket
 
     def title
-      check_title_presence
+      validate_title_presence
     end
 
     def position_in_folder
       return unless ticket.folder
 
-      check_position_in_folder_uniqueness(in_folder_positions)
-      check_position_in_folder_presence
-    end
-
-    def in_folder_positions
-      @in_folder_positions ||= ticket.folder.tickets_positions(except: ticket.id)
+      validate_position_in_folder_uniqueness(in_folder_positions)
+      validate_position_in_folder_presence
     end
   end
 end

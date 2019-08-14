@@ -24,7 +24,7 @@ module Validators
     end
 
     def workspace
-      check_workspace_presence
+      validate_workspace_presence
     end
   end
 end
