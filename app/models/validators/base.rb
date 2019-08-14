@@ -15,6 +15,7 @@ module Validators
 
     def validators
       {
+        'checklist' => Validators::Checklists.new(fields),
         'checklist_option' => Validators::ChecklistOptions.new(fields),
         'due_time' => Validators::DueTime.new(fields),
         'folder' => Validators::Folders.new(fields),
