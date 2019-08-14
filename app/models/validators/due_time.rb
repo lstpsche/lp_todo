@@ -20,6 +20,9 @@ module Validators
 
     def date
       validate_date_presence
+    end
+
+    def ticket
       validate_date_type
     end
   end
