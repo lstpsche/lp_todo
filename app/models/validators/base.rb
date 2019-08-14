@@ -16,6 +16,7 @@ module Validators
     def validators
       {
         'checklist_option' => ChecklistOptions.new(fields),
+        'folder' => Folders.new(fields),
         'ticket' => Tickets.new(fields),
         'item' => Items.new(fields)
       }
