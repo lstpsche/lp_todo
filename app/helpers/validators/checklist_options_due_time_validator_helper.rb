@@ -11,9 +11,9 @@ module Validators
     end
 
     def validate_date_type
-      unless option_due_time.date.class == ActiveSupport::TimeWithZone
-        option_due_time.errors[:base] << DATE_TYPE_NOT_VALID
-      end
+      return unless option_due_time.date.class == ActiveSupport::TimeWithZone
+
+      option_due_time.errors[:base] << DATE_TYPE_NOT_VALID
     end
 
     def validate_ticket_presence

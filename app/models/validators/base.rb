@@ -4,9 +4,8 @@ module Validators
   class Base < ActiveModel::Validator
     def validate(record)
       key = record.class.to_s.underscore
-      @fields = options[:fields]
 
-      validators[key].validate(record)
+      validators[key].new(options[:fields]).validate(record)
     end
 
     private
@@ -15,16 +14,16 @@ module Validators
 
     def validators
       {
-        'checklist' => Validators::Checklists.new(fields),
-        'checklist_option' => Validators::ChecklistOptions.new(fields),
-        'checklist_option_due_time' => Validators::ChecklistOptionsDueTime.new(fields),
-        'due_time' => Validators::DueTime.new(fields),
-        'folder' => Validators::Folders.new(fields),
-        'label' => Validators::Labels.new(fields),
-        'note' => Validators::Notes.new(fields),
-        'ticket' => Validators::Tickets.new(fields),
-        'item' => Validators::Items.new(fields),
-        'workspace' => Validators::Workspaces.new(fields)
+        'checklist' => Validators::Checklists,
+        'checklist_option' => Validators::ChecklistOptions,
+        'checklist_option_due_time' => Validators::ChecklistOptionsDueTime,
+        'due_time' => Validators::DueTime,
+        'folder' => Validators::Folders,
+        'label' => Validators::Labels,
+        'note' => Validators::Notes,
+        'ticket' => Validators::Tickets,
+        'item' => Validators::Items,
+        'workspace' => Validators::Workspaces
       }
     end
   end
