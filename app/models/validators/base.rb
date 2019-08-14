@@ -17,6 +17,7 @@ module Validators
       {
         'checklist' => Validators::Checklists.new(fields),
         'checklist_option' => Validators::ChecklistOptions.new(fields),
+        'checklist_option_due_time' => Validators::ChecklistOptionsDueTime.new(fields),
         'due_time' => Validators::DueTime.new(fields),
         'folder' => Validators::Folders.new(fields),
         'label' => Validators::Labels.new(fields),
