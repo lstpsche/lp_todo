@@ -15,13 +15,14 @@ module Validators
 
     def validators
       {
-        'checklist_option' => ChecklistOptions.new(fields),
-        'folder' => Folders.new(fields),
-        'label' => Labels.new(fields),
-        'note' => Notes.new(fields),
-        'ticket' => Tickets.new(fields),
-        'item' => Items.new(fields),
-        'workspace' => Workspaces.new(fields)
+        'checklist_option' => Validators::ChecklistOptions.new(fields),
+        'due_time' => Validators::DueTime.new(fields),
+        'folder' => Validators::Folders.new(fields),
+        'label' => Validators::Labels.new(fields),
+        'note' => Validators::Notes.new(fields),
+        'ticket' => Validators::Tickets.new(fields),
+        'item' => Validators::Items.new(fields),
+        'workspace' => Validators::Workspaces.new(fields)
       }
     end
   end
