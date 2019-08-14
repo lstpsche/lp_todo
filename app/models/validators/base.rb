@@ -17,6 +17,7 @@ module Validators
       {
         'checklist_option' => ChecklistOptions.new(fields),
         'folder' => Folders.new(fields),
+        'note' => Notes.new(fields),
         'ticket' => Tickets.new(fields),
         'item' => Items.new(fields),
         'workspace' => Workspaces.new(fields)
