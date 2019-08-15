@@ -2,13 +2,9 @@
 
 module Validators
   module LabelsValidatorHelper
-    TITLE_NOT_PRESENT_MSG = 'Label should have its title. Please, specify one.'
-    COLOR_VALUE_NOT_VALID = 'Label color should be in hex format.'
     COLOR_PATTERN_REGEX = /^#([a-f0-9]{6}|[a-f0-9]{3})$/.freeze
-
-    def validate_title_presence
-      label.errors[:base] << TITLE_NOT_PRESENT_MSG unless label.title
-    end
+    COLOR_VALUE_NOT_VALID = I18n.t error.label.color.not_valid
+    TITLE_NOT_PRESENT = I18n.t error.label.title.not_present
 
     def validate_color_presence
       label.color ||= '#000000'
@@ -16,6 +12,10 @@ module Validators
 
     def validate_color_value
       label.errors[:base] << COLOR_VALUE_NOT_VALID unless COLOR_PATTERN_REGEX.match?(label.color)
+    end
+
+    def validate_title_presence
+      label.errors[:base] << TITLE_NOT_PRESENT unless label.title
     end
   end
 end

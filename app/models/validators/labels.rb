@@ -18,14 +18,14 @@ module Validators
 
     attr_reader :fields, :label
 
-    def title
-      validate_title_presence
-    end
-
     def color
       # this method sets color to white (#000000) if it's nil
       validate_color_presence
       validate_color_value
+    end
+
+    def title
+      validate_title_presence
     end
   end
 end

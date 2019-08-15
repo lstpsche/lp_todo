@@ -18,12 +18,12 @@ module Validators
 
     attr_reader :fields, :list
 
-    def title
-      validate_title_presence
-    end
-
     def ticket
       validate_ticket_presence
+    end
+
+    def title
+      validate_title_presence
     end
   end
 end

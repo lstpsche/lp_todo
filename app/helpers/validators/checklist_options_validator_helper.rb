@@ -2,22 +2,18 @@
 
 module Validators
   module ChecklistOptionsValidatorHelper
-    INVALID_OPTION_VALUE_MSG = 'Invalid checklist option value. It should be either checked or not checked.'
-    TEXT_NOT_PRESENT_MSG = 'Checklist option should have a text. Please, specify one.'
-    CHECKLIST_NOT_PRESENT_MSG = 'Checklist option should be in Checklist.'
-    POSITION_NOT_PRESENT = 'Checklist option should have a position in checklist.'
-    POSITION_NOT_UNIQUE = 'Checklist option position should be unique.'
-
-    def validate_checklist_presence
-      option.errors[:base] << CHECKLIST_NOT_PRESENT_MSG unless option.checklist
-    end
-
-    def validate_text_presence
-      option.errors[:base] << TEXT_NOT_PRESENT_MSG if option.text.blank?
-    end
+    CHECKED_FIELD_NOT_VALID = I18n.t error.checklist_option.checked_field.not_valid
+    CHECKLIST_NOT_PRESENT = I18n.t error.checklist_option.checklist.not_present
+    POSITION_NOT_PRESENT = I18n.t error.checklist_option.position.not_present
+    POSITION_NOT_UNIQUE = I18n.t error.checklist_option.position.not_unique
+    TEXT_NOT_PRESENT = I18n.t error.checklist_option.text.not_present
 
     def validate_checked_field
-      option.errors[:base] << INVALID_OPTION_VALUE_MSG unless option.checked.in? [true, false]
+      option.errors[:base] << CHECKED_FIELD_NOT_VALID unless option.checked.in? [true, false]
+    end
+
+    def validate_checklist_presence
+      option.errors[:base] << CHECKLIST_NOT_PRESENT unless option.checklist
     end
 
     def validate_position_presence
@@ -26,6 +22,10 @@ module Validators
 
     def validate_position_uniqueness(positions)
       option.errors[:base] << POSITION_NOT_UNIQUE if option.position.in? positions
+    end
+
+    def validate_text_presence
+      option.errors[:base] << TEXT_NOT_PRESENT if option.text.blank?
     end
   end
 end

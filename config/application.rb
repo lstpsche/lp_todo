@@ -14,7 +14,6 @@ module LpTodo
     config.load_defaults 5.2
 
     config.i18n.default_locale = :en
-    config.i18n.fallbacks = true
     config.i18n.fallbacks = [I18n.default_locale]
     config.i18n.available_locales = %i[en ru]
 

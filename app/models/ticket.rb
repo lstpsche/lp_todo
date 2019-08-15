@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Ticket < ApplicationRecord
-  validates_with Validators::Base, fields: %i[title position_in_folder]
+  validates_with Validators::Base, fields: %i[position_in_folder title]
 
   belongs_to :workspace
 
