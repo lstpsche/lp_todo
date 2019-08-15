@@ -19,22 +19,22 @@ module Validators
     attr_reader :fields, :option
 
     def text
-      validate_option_text_presence
+      validate_text_presence
     end
 
     def checklist
-      validate_option_checklist_presence
+      validate_checklist_presence
     end
 
     def checked
-      validate_option_checked_field
+      validate_checked_field
     end
 
     def position
       return unless (checklist = options.checklist)
 
-      validate_option_position_presence
-      validate_option_position_uniqueness(checklist.options.pluck(:position))
+      validate_position_presence
+      validate_position_uniqueness(checklist.options.pluck(:position))
     end
   end
 end

@@ -2,23 +2,23 @@
 
 module Validators
   class Base < ActiveModel::Validator
+    VALIDATORS = {
+      'checklist' => Validators::Checklists,
+      'checklist_option' => Validators::ChecklistOptions,
+      'checklist_option_due_time' => Validators::ChecklistOptionsDueTime,
+      'due_time' => Validators::DueTime,
+      'folder' => Validators::Folders,
+      'label' => Validators::Labels,
+      'note' => Validators::Notes,
+      'ticket' => Validators::Tickets,
+      'item' => Validators::Items,
+      'workspace' => Validators::Workspaces
+    }.freeze
+
     def validate(record)
       key = record.class.to_s.underscore
-      @fields = options[:fields]
 
-      validators[key].validate(record)
-    end
-
-    private
-
-    attr_reader :fields
-
-    def validators
-      {
-        'checklist_option' => ChecklistOptions.new(fields),
-        'ticket' => Tickets.new(fields),
-        'item' => Items.new(fields)
-      }
+      validators[key].new(options[:fields]).validate(record)
     end
   end
 end
