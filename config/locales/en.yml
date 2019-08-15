@@ -1,33 +1,49 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   'true': 'foo'
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  error:
+    checklist:
+      ticket:
+        not_present: 'Checklist should belong to ticket. Please, specify one.'
+      title:
+        not_present: 'Checklist should have a title. Please, specify one.'
+    checklist_option:
+      checked_field:
+        not_valid: 'Invalid checklist option value. It should be either checked or not checked.'
+      checklist:
+        not_present: 'Checklist option should be in Checklist.'
+      due_time:
+        date:
+          not_present: 'Checklist options should have a due time. Please, specify one.'
+          type_not_valid: 'Checklist options due time should be ActiveSupport::TimeWithZone.'
+        checklist:
+          not_present: 'Checklist options should have a checklist. Please, specify one.'
+      position:
+        not_present: 'Checklist option should have a position in checklist.'
+        not_unique: 'Checklist option position should be unique.'
+      text:
+        not_present: 'Checklist option should have a text. Please, specify one.'
+    due_time:
+      date:
+        not_present: 'Due time should have a date. Please, specify one.'
+        type_not_valid: 'Due time date should be ActiveSupport::TimeWithZone.'
+      ticket:
+        not_present: 'Due time should have a ticket. Please, specify one.'
+    folder:
+      workspace:
+        not_present: 'Folder should have a workspace.'
+    item:
+      position:
+        already_taken: 'This position is already taken. Please, specify another one.'
+    label:
+      color:
+        not_valid: 'Label color should be in hex format.'
+      title:
+        not_present: 'Label should have its title. Please, specify one.'
+    note:
+      text:
+        not_present: 'Note should have its text. Please, specify one.'
+    ticket:
+      title:
+        not_present: 'Ticket should have a title. Please, specify one.'
+      position_in_folder:
+        already_taken: 'This position is already taken. Please, specify another one.'
+        not_present: 'Ticket should have a position in folder. Please, specify one.'
