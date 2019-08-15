@@ -2,7 +2,7 @@
 
 module Validators
   module FoldersValidatorHelper
-    WORKSPACE_NOT_PRESENT = 'Folder should have a workspace.'
+    WORKSPACE_NOT_PRESENT = I18n.t error.folder.workspace.not_present
 
     def validate_title_not_nil
       folder.title ||= ''

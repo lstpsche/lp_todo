@@ -2,9 +2,13 @@
 
 module Validators
   module DueTimeValidatorHelper
-    DATE_NOT_PRESENT = 'Due time should have a date. Please, specify one.'
-    DATE_TYPE_NOT_VALID = 'Due time date should be ActiveSupport::TimeWithZone.'
-    TICKET_NOT_PRESENT = 'Due time should have a ticket. Please, specify one.'
+    TICKET_NOT_PRESENT = I18n.t error.due_time.ticket.not_present
+    DATE_NOT_PRESENT = I18n.t error.due_time.date.not_present
+    DATE_TYPE_NOT_VALID = I18n.t error.due_time.date.type_not_valid
+
+    def validate_ticket_presence
+      due_time.errors[:base] << TICKET_NOT_PRESENT unless due_time.ticket
+    end
 
     def validate_date_presence
       due_time.errors[:base] << DATE_NOT_PRESENT unless due_time.date
@@ -12,10 +16,6 @@ module Validators
 
     def validate_date_type
       due_time.errors[:base] << DATE_TYPE_NOT_VALID unless due_time.date.class == ActiveSupport::TimeWithZone
-    end
-
-    def validate_ticket_presence
-      due_time.errors[:base] << TICKET_NOT_PRESENT unless due_time.ticket
     end
   end
 end

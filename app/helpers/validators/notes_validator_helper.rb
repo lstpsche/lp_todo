@@ -2,10 +2,10 @@
 
 module Validators
   module NotesValidatorHelper
-    TEXT_NOT_PRESENT_MSG = 'Note should have its text. Please, specify one.'
+    TEXT_NOT_PRESENT = I18n.error.note.text.not_present
 
     def validate_text_presence
-      note.errors[:base] << TEXT_NOT_PRESENT_MSG unless note.text
+      note.errors[:base] << TEXT_NOT_PRESENT unless note.text
     end
   end
 end

@@ -18,13 +18,13 @@ module Validators
 
     attr_reader :fields, :due_time
 
+    def ticket
+      validate_ticket_presence
+    end
+
     def date
       validate_date_presence
       validate_date_type
-    end
-
-    def ticket
-      validate_ticket_presence
     end
   end
 end

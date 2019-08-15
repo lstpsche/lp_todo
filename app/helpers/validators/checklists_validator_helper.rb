@@ -2,15 +2,15 @@
 
 module Validators
   module ChecklistsValidatorHelper
-    TITLE_NOT_PRESENT = 'Checklist should have a title. Please, specify one.'
-    TICKET_NOT_PRESENT = 'Checklist should belong to ticket. Please, specify one.'
-
-    def validate_title_presence
-      list.errors[:base] << TITLE_NOT_PRESENT unless list.title.present?
-    end
+    TICKET_NOT_PRESENT = I18n.t error.checklist.ticket.not_valid
+    TITLE_NOT_PRESENT = I18n.t error.checklist.title.not_valid
 
     def validate_ticket_presence
       list.errors[:base] << TICKET_NOT_PRESENT unless list.ticket
+    end
+
+    def validate_title_presence
+      list.errors[:base] << TITLE_NOT_PRESENT unless list.title.present?
     end
   end
 end
