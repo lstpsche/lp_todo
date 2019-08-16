@@ -7,6 +7,9 @@ AllCops:
     - 'tmp/**/*'
     - 'db/schema.rb'
 
+Layout/CommentIndentation:
+  Enabled: false
+
 Metrics/BlockLength:
   Max: 30
 
