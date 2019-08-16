@@ -36,27 +36,28 @@ gem 'turbolinks', '~> 5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :development do
-  gem 'web-console', '>= 3.3.0'
+group :development, :test do
+  # Adds support for Capybara system testing and web drivers
+  gem 'capybara', '>= 2.15'
+  # Cleans database after tests
+  gem 'database_cleaner'
+  # Factories for tests
+  gem 'factory_bot'
   # For debugs: binding.pry
   gem 'pry'
+  # Reek to keep code nice smelling
+  gem 'reek'
+  # Rspec testing
+  gem 'rspec-rails'
+  # To keep code style standartized
+  gem 'rubocop', '~> 0.73.0', require: false
+  gem 'selenium-webdriver'
+  # Easy installation and use of chromedriver to run system tests with Chrome
   # Spring speeds up development by keeping your application running in the background
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   # IntelliSense, auto-complection and a lot of more useful stuff for code writing
   gem 'solargraph', '~> 0.36.0'
-end
-
-group :test do
-  # Adds support for Capybara system testing and web drivers
-  gem 'capybara', '>= 2.15'
-  # Reek to keep code nice smelling
-  gem 'reek'
-  # Rspec testing
-  gem 'rspec'
-  # To keep code style standartized
-  gem 'rubocop', '~> 0.73.0', require: false
-  # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'selenium-webdriver'
+  gem 'web-console', '>= 3.3.0'
   gem 'webdrivers'
 end
